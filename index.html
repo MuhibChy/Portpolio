@@ -46,81 +46,139 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
-            color: #1a1a1a;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #0a192f, #1a2a44);
+            color: #e6f1ff;
+            overflow-x: hidden;
         }
         .navbar {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 25, 47, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem 0;
             transition: all 0.3s ease;
         }
         .navbar.scrolled {
-            background: #1a1a1a !important;
+            background: #0a192f !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
         .navbar .nav-link, .navbar-brand {
-            color: #ffffff !important;
-            font-weight: 400;
+            color: #e6f1ff !important;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
         .navbar .nav-link:hover {
-            color: #dc3545 !important;
+            color: #00c4b4 !important;
+            transform: translateY(-2px);
         }
         .hero-section {
             min-height: 100vh;
-            background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(0, 0, 0, 0.1));
+            background: url('https://images.unsplash.com/photo-1639322537507-904d7d27a97d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 2px solid #dc3545;
+            text-align: center;
+            z-index: 1;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 196, 180, 0.3), rgba(200, 16, 46, 0.3));
+            z-index: -1;
+        }
+        .hero-content {
+            animation: fadeInUp 1.2s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(60px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         .section {
             min-height: 80vh;
             padding: 5rem 0;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
             margin: 2rem auto;
             max-width: 1200px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 196, 180, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #c8102e;
+            border-radius: 10px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(200, 16, 46, 0.3);
+        }
         .skill-bar {
-            height: 12px;
-            background-color: #e5e7eb;
-            border-radius: 6px;
+            height: 16px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
             overflow: hidden;
         }
         .skill-bar-fill {
             height: 100%;
-            background-color: #dc3545;
-            transition: width 1s ease-in-out;
-        }
-        .card {
-            border: none;
-            border-left: 4px solid #dc3545;
-            background: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(90deg, #c8102e, #facc15);
+            transition: width 1.8s ease-in-out;
         }
         .btn-primary {
-            background-color: #dc3545;
-            border-color: #dc3545;
+            background: linear-gradient(45deg, #c8102e, #facc15);
+            border: none;
+            font-weight: 600;
+            padding: 0.8rem 2.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #b02a37;
-            border-color: #b02a37;
+            background: linear-gradient(45deg, #a10d24, #d4a017);
+            transform: scale(1.1);
         }
-        h2, h3 {
-            color: #1a1a1a;
-            font-weight: 700;
+        h1, h2, h3 {
+            color: #e6f1ff;
+            font-weight: 800;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        .text-muted {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+        a.text-decoration-none {
+            color: #facc15;
+            transition: color 0.3s ease;
+        }
+        a.text-decoration-none:hover {
+            color: #00c4b4;
+        }
+        .list-group-item {
+            background: transparent;
+            color: #e6f1ff;
+            border: none;
+            padding: 0.5rem 1rem;
+        }
+        .highlight {
+            background: linear-gradient(90deg, rgba(200, 16, 46, 0.2), rgba(0, 196, 180, 0.2));
+            padding: 2px 8px;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -147,10 +205,10 @@
 
     <!-- Home Section -->
     <section id="home" class="hero-section text-center">
-        <div class="container fade-in">
-            <h1 class="display-4 fw-bold mb-4">Mohammad Muhib Ullah</h1>
-            <p class="lead mb-5">Red Team Analyst | Ethical Hacker | Cybersecurity Specialist</p>
-            <a href="#contact" class="btn btn-primary btn-lg">Get in Touch</a>
+        <div class="container hero-content">
+            <h1 class="display-3 fw-bold mb-4">Mohammad Muhib Ullah</h1>
+            <p class="lead mb-5 fs-2"><span class="highlight">Red Team Analyst</span> | <span class="highlight">Ethical Hacker</span> | <span class="highlight">Cybersecurity Specialist</span></p>
+            <a href="#contact" class="btn btn-primary btn-lg">Discover My Expertise</a>
         </div>
     </section>
 
@@ -158,8 +216,8 @@
     <section id="about" class="section">
         <div class="container fade-in">
             <h2 class="display-5 fw-bold text-center mb-5">About Me</h2>
-            <p class="lead text-gray-700">
-                I am a Junior Red Team Analyst with hands-on experience in penetration testing, ethical hacking, and cybersecurity assessments. With over three years as an IT Support Officer in a UK-based company, I have honed strong English communication skills. My expertise includes simulating adversarial attacks, conducting vulnerability assessments, and implementing security hardening measures. Passionate about offensive security, I am dedicated to continuous learning in red teaming and advanced penetration testing.
+            <p class="lead fs-5 text-center">
+                I am a dedicated Junior Red Team Analyst with hands-on expertise in penetration testing, ethical hacking, and cybersecurity assessments. With over three years as an IT Support Officer in a UK-based company, I have honed exceptional English communication skills. My proficiency in simulating adversarial attacks, conducting vulnerability assessments, and implementing security hardening measures drives my passion for offensive security. I am committed to advancing my expertise in red teaming and penetration testing to protect organizations from cyber threats.
             </p>
         </div>
     </section>
@@ -170,10 +228,10 @@
             <h2 class="display-5 fw-bold text-center mb-5">Experience</h2>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="card-title">Junior Red Team Analyst (Internship)</h3>
-                            <p class="text-muted">2025 – Present</p>
+                            <h3 class="card-title fs-3">Junior Red Team Analyst (Internship)</h3>
+                            <p class="text-muted fs-5">2025 – Present</p>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Conducted penetration testing on web applications and networks using Kali Linux, BurpSuite, and Metasploit.</li>
                                 <li class="list-group-item">Performed vulnerability scans with Nessus and OpenVAS; reported findings with mitigation steps.</li>
@@ -182,10 +240,10 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="card-title">IT Support Officer – B&F Corporate (UK-based)</h3>
-                            <p class="text-muted">3 years</p>
+                            <h3 class="card-title fs-3">IT Support Officer – B&F Corporate (UK-based)</h3>
+                            <p class="text-muted fs-5">3 years</p>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Provided remote technical support to UK clients, ensuring secure system operation.</li>
                                 <li class="list-group-item">Troubleshot networking, OS, and application issues with a focus on minimizing downtime.</li>
@@ -194,10 +252,10 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="card-title">IT Officer – MS. Monzur & Company</h3>
-                            <p class="text-muted">3 years 9 months</p>
+                            <h3 class="card-title fs-3">IT Officer – MS. Monzur & Company</h3>
+                            <p class="text-muted fs-5">3 years 9 months</p>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Managed IT infrastructure, including servers, LAN/WAN, and cybersecurity tools.</li>
                                 <li class="list-group-item">Implemented backup and recovery procedures to ensure data security.</li>
@@ -217,27 +275,27 @@
             <h2 class="display-5 fw-bold text-center mb-5">Skills</h2>
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <h5>Red Teaming & Penetration Testing</h5>
+                    <h5 class="text-white">Red Teaming & Penetration Testing</h5>
                     <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%;"></div></div>
                     <p class="text-muted mt-2">Metasploit, BurpSuite, SQLMap, Hydra, John the Ripper, Mimikatz, BloodHound</p>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <h5>Vulnerability Assessment & Security Tools</h5>
+                    <h5 class="text-white">Vulnerability Assessment & Security Tools</h5>
                     <div class="skill-bar"><div class="skill-bar-fill" style="width: 80%;"></div></div>
                     <p class="text-muted mt-2">Nessus, OpenVAS, Qualys, Acunetix, Wazuh, Splunk</p>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <h5>Networking & Systems</h5>
+                    <h5 class="text-white">Networking & Systems</h5>
                     <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%;"></div></div>
                     <p class="text-muted mt-2">Windows Server (2012+2016), Linux (Kali, Parrot, BlackArch, Red Hat), Active Directory, DNS/DHCP, LDAP, Squid Server</p>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <h5>Programming/Scripting</h5>
+                    <h5 class="text-white">Programming/Scripting</h5>
                     <div class="skill-bar"><div class="skill-bar-fill" style="width: 65%;"></div></div>
                     <p class="text-muted mt-2">Python, Bash, PHP, Java (basic for web exploitation)</p>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <h5>Other Skills</h5>
+                    <h5 class="text-white">Other Skills</h5>
                     <div class="skill-bar"><div class="skill-bar-fill" style="width: 75%;"></div></div>
                     <p class="text-muted mt-2">Incident response, phishing simulation, password cracking, web app security testing</p>
                 </div>
@@ -251,16 +309,16 @@
             <h2 class="display-5 fw-bold text-center mb-5">Education & Certifications</h2>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="card-title">Education</h3>
-                            <p class="card-text">MBS – Govt. Commerce College, Chittagong (National University), 2015</p>
-                            <p class="card-text">BBS – Govt. Commerce College, Chittagong (National University), 2014</p>
+                            <h3 class="card-title fs-3">Education</h3>
+                            <p class="card-text text-white">MBS – Govt. Commerce College, Chittagong (National University), 2015</p>
+                            <p class="card-text text-white">BBS – Govt. Commerce College, Chittagong (National University), 2014</p>
                         </div>
                     </div>
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="card-title">Certifications & Training</h3>
+                            <h3 class="card-title fs-3">Certifications & Training</h3>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">CEH (Ethical Hacking Essentials, Professional, Advanced) – EC Council / Udemy</li>
                                 <li class="list-group-item">Certified Ethical Hacking Masterclass (130+ hrs) – Udemy</li>
@@ -282,10 +340,10 @@
         <div class="container fade-in">
             <h2 class="display-5 fw-bold text-center mb-5">Contact</h2>
             <div class="text-center">
-                <p class="lead mb-3"><strong>Email:</strong> <a href="mailto:readteamer.muhib@gmail.com" class="text-decoration-none text-dark">readteamer.muhib@gmail.com</a></p>
-                <p class="lead mb-3"><strong>Phone:</strong> +8801816-438941</p>
-                <p class="lead mb-3"><strong>Location:</strong> Chittagong, Bangladesh</p>
-                <p class="lead mb-3"><strong>Languages:</strong> English (Fluent), Bengali (Native), Hindi/Urdu (Fluent)</p>
+                <p class="lead fs-5 mb-3"><strong>Email:</strong> <a href="mailto:readteamer.muhib@gmail.com" class="text-decoration-none">readteamer.muhib@gmail.com</a></p>
+                <p class="lead fs-5 mb-3"><strong>Phone:</strong> +8801816-438941</p>
+                <p class="lead fs-5 mb-3"><strong>Location:</strong> Chittagong, Bangladesh</p>
+                <p class="lead fs-5 mb-3"><strong>Languages:</strong> English (Fluent), Bengali (Native), Hindi/Urdu (Fluent)</p>
                 <a href="mailto:readteamer.muhib@gmail.com" class="btn btn-primary btn-lg mt-3">Let's Connect</a>
             </div>
         </div>
@@ -323,7 +381,7 @@
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.3 });
 
         fadeElements.forEach(element => observer.observe(element));
     </script>
